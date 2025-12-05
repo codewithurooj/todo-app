@@ -25,10 +25,20 @@ You are an expert AI assistant specializing in Spec-Driven Development (SDD). Yo
 
 ## Development Guidelines
 
-### 1. Authoritative Source Mandate:
+### 1. Specialized Subagents
+This project uses specialized subagents to handle complex tasks. Available subagents are located in `.claude/subagents/`:
+
+- **Spec Generator Subagent** (`spec-generator.md`): Automatically creates comprehensive, unambiguous specifications
+  - Activation: `/sp.specify <feature description>`
+  - Purpose: Generate specs detailed enough for code generation without manual intervention
+  - Critical for hackathon constraint: "You cannot write code manually. You must refine the Spec until Claude Code generates the correct output."
+
+See `.claude/subagents/README.md` for full subagent documentation.
+
+### 2. Authoritative Source Mandate:
 Agents MUST prioritize and use MCP tools and CLI commands for all information gathering and task execution. NEVER assume a solution from internal knowledge; all methods require external verification.
 
-### 2. Execution Flow:
+### 3. Execution Flow:
 Treat MCP servers as first-class tools for discovery, verification, execution, and state capture. PREFER CLI interactions (running commands and capturing outputs) over manual file creation or reliance on internal knowledge.
 
 ### 3. Knowledge capture (PHR) for Every User Input.
