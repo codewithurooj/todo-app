@@ -80,6 +80,7 @@ This project follows **7 Core Principles** defined in our [Constitution](.specif
 
 #### Features (Phase I)
 - ✅ Constitution v1.0.0 established
+- ✅ Spec Generator Subagent (development tool)
 - ⏳ Add task
 - ⏳ Delete task
 - ⏳ Update task
@@ -280,6 +281,43 @@ The project is governed by our [Constitution](.specify/memory/constitution.md), 
 **Current Version**: 1.0.0
 **Ratified**: 2025-12-05
 **Last Amended**: 2025-12-05
+
+## 🤖 Development Subagents
+
+This project uses specialized subagents to automate complex development tasks across features and phases.
+
+### Available Subagents
+
+#### 1. Spec Generator Subagent
+**Location**: `.claude/subagents/spec-generator.md`
+**Purpose**: Automatically generates comprehensive, unambiguous specifications
+
+**Key Capabilities**:
+- Exhaustive user scenarios with Given/When/Then acceptance criteria
+- Detailed functional requirements (FR-XXX format)
+- Measurable success criteria (technology-agnostic)
+- Automatic edge case identification
+- Quality validation against hackathon requirements
+- Maximum 3 clarifications per spec
+
+**Why Critical for This Hackathon**:
+The hackathon constraint states: *"You cannot write code manually. You must refine the Spec until Claude Code generates the correct output."*
+
+This subagent ensures specifications are detailed enough that Claude Code can generate perfect implementations without any manual coding.
+
+**Usage**:
+```bash
+/sp.specify Add task functionality with title and description
+```
+
+**What It Generates**:
+- Prioritized user stories (P1, P2, P3)
+- FR-XXX functional requirements with acceptance criteria
+- Measurable success criteria
+- Edge cases and error scenarios
+- Validation checklist
+
+**Documentation**: See [Subagents README](.claude/subagents/README.md)
 
 ## 🤝 Contributing
 
