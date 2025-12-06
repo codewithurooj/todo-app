@@ -91,11 +91,11 @@ pytest tests/unit/test_task_model.py  # T008
 
 **Independent Test**: Project can be initialized, dependencies installed, tests run (even if empty)
 
-- [ ] T001 Create project directory structure (src/, tests/, specs/)
-- [ ] T002 Initialize Python project with pyproject.toml and requirements.txt
-- [ ] T003 Configure pytest with pyproject.toml (test discovery, coverage)
-- [ ] T004 Configure code quality tools (ruff for linting, black for formatting, mypy for type checking)
-- [ ] T005 Create main.py application entry point with basic menu structure
+-[x] T001 Create project directory structure (src/, tests/, specs/)
+-[x] T002 Initialize Python project with pyproject.toml and requirements.txt
+-[x] T003 Configure pytest with pyproject.toml (test discovery, coverage)
+-[x] T004 Configure code quality tools (ruff for linting, black for formatting, mypy for type checking)
+-[x] T005 Create main.py application entry point with basic menu structure
 
 **Files Created/Modified**:
 - `src/`, `tests/unit/`, `tests/integration/`, `specs/001-add-task/`
@@ -121,15 +121,15 @@ mypy src/  # type checker runs
 
 ### Task Model & Data Structures
 
-- [ ] T006 [P] Create Task dataclass in src/models/task.py with type hints (id, title, description, completed, created_at)
-- [ ] T007 [P] Create TaskList class in src/models/task.py with in-memory storage (_tasks list, _next_id counter)
+-[x] T006 [P] Create Task dataclass in src/models/task.py with type hints (id, title, description, completed, created_at)
+-[x] T007 [P] Create TaskList class in src/models/task.py with in-memory storage (_tasks list, _next_id counter)
 
 **Files Created**: `src/models/__init__.py`, `src/models/task.py`
 
 ### Validation Logic
 
-- [ ] T008 Create validator functions in src/utils/validators.py (validate_title, validate_description)
-- [ ] T009 Write unit tests for validators in tests/unit/test_validators.py (empty title, too long, valid cases)
+-[x] T008 Create validator functions in src/utils/validators.py (validate_title, validate_description)
+-[x] T009 Write unit tests for validators in tests/unit/test_validators.py (empty title, too long, valid cases)
 
 **Files Created**: `src/utils/__init__.py`, `src/utils/validators.py`, `tests/unit/test_validators.py`
 
@@ -160,8 +160,8 @@ assert validate_title("")[0] == False
 
 ### Tests (TDD - Write First)
 
-- [ ] T010 [P] [US1] Write unit tests for Task dataclass in tests/unit/test_task_model.py (task creation, attribute access, immutability)
-- [ ] T011 [P] [US1] Write unit tests for TaskList.add_task() in tests/unit/test_task_model.py (ID generation, task storage, retrieval)
+-[x] T010 [P] [US1] Write unit tests for Task dataclass in tests/unit/test_task_model.py (task creation, attribute access, immutability)
+-[x] T011 [P] [US1] Write unit tests for TaskList.add_task() in tests/unit/test_task_model.py (ID generation, task storage, retrieval)
 
 **Test File**: `tests/unit/test_task_model.py`
 
@@ -179,10 +179,10 @@ def test_task_default_completed_false():
 
 ### Implementation
 
-- [ ] T012 [US1] Implement TaskList.add_task() method in src/models/task.py (create task, assign ID, append to list, return task)
-- [ ] T013 [US1] Implement TaskList.get_all_tasks() method in src/models/task.py (return copy of tasks list)
-- [ ] T014 [US1] Create CLI handler for add task in src/cli/task_cli.py (prompt for title, call validation, call add_task, display confirmation)
-- [ ] T015 [US1] Integrate add task handler into main menu in main.py (menu option, route to handler)
+-[x] T012 [US1] Implement TaskList.add_task() method in src/models/task.py (create task, assign ID, append to list, return task)
+-[x] T013 [US1] Implement TaskList.get_all_tasks() method in src/models/task.py (return copy of tasks list)
+-[x] T014 [US1] Create CLI handler for add task in src/cli/task_cli.py (prompt for title, call validation, call add_task, display confirmation)
+-[x] T015 [US1] Integrate add task handler into main menu in main.py (menu option, route to handler)
 
 **Files Created**: `src/cli/__init__.py`, `src/cli/task_cli.py`
 **Files Modified**: `main.py`, `src/models/task.py`
@@ -405,7 +405,7 @@ All tasks follow the required checklist format:
 
 **Example**:
 ```
-- [ ] T012 [US1] Implement TaskList.add_task() method in src/models/task.py
+-[x] T012 [US1] Implement TaskList.add_task() method in src/models/task.py
 ```
 
 ---
