@@ -1,104 +1,139 @@
-# Implementation Plan: [FEATURE]
+# Implementation Plan: Mark Task Complete Feature
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Branch**: `005-mark-complete` | **Date**: 2025-12-06 | **Spec**: [spec.md](./spec.md)
+**Input**: Feature specification from `/specs/005-mark-complete/spec.md`
 
-**Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+---
 
 ## Summary
 
-[Extract from feature spec: primary requirement + technical approach from research]
+Implement completion status operations for the todo app, allowing users to mark tasks as complete and reopen them. This feature extends the existing Task and TaskList entities from 001-add-task with two new methods (`mark_complete()` and `unmark_complete()`) and integrates new menu options into the CLI.
+
+**Technical Approach**: Extend TaskList with completion status methods, add CLI handlers for mark complete/reopen operations, and implement two-phase validation (task existence + status check). Operations are idempotent and preserve all task fields except `completed` and `updated_at`.
+
+---
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+**Language/Version**: Python 3.13+
+**Primary Dependencies**: datetime (stdlib, UTC timezone support), dataclasses
+**Storage**: In-memory list (Phase I constraint)
+**Testing**: pytest with capsys fixture for CLI testing
+**Target Platform**: Console application (Windows/Linux/macOS)
+**Project Type**: Single project (console app)
+**Performance Goals**: <1 second for status changes (in-memory operations)
+**Constraints**: No file persistence, single-user, no completion history
+**Scale/Scope**: 5 basic operations (add, delete, update, view, mark complete)
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+---
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+### I. Spec-Driven Development ✅
+- Specification complete with user scenarios, functional requirements, success criteria
+- All FR-XXX requirements defined with MUST statements
+- Edge cases documented (9 total)
+
+### II. Test-Driven Development ✅
+- TDD workflow planned: Write tests → Verify fail (red) → Implement (green) → Refactor
+- Unit tests defined for TaskList methods
+- Integration tests defined for CLI workflows
+- Property-based testing recommended for mark/unmark roundtrips
+
+### III. Evolutionary Architecture ✅
+- Builds on existing Task and TaskList from 001-add-task (reuse, not rebuild)
+- Minimal changes: Only 2 new methods on TaskList
+- Evolution path documented for Phase II (file), Phase IV (database)
+- No breaking changes to existing features
+
+### IV. Clean Code & Python Standards ✅
+- Type hints required: `Tuple[bool, str]` return types
+- Docstrings planned for all methods
+- PEP 8 style compliance
+- Functions single-purpose (<20 lines per constitution guideline)
+
+### V. Project Structure & Organization ✅
+- Planning artifacts in `specs/005-mark-complete/`
+- Tests organized: `tests/unit/` and `tests/integration/`
+- Source code extends existing structure: `src/models/`, `src/cli/`
+
+### VI. Simplicity First (YAGNI) ✅
+- Boolean `completed` field (simplest representation for Phase I)
+- No premature optimization (O(n) search acceptable for in-memory)
+- No completion history tracking (deferred to future phases)
+- No bulk operations (not requested)
+
+### VII. Comprehensive Documentation ✅
+- Research.md: 8 technical decisions documented
+- Data-model.md: Entity extensions with state machine
+- Contracts: 3 contract files (methods, CLI, validation)
+- Quickstart.md: Developer guide with TDD workflow
+- PHR to be created after planning
+
+**GATE STATUS**: ✅ PASS - All constitution principles satisfied
+
+---
 
 ## Project Structure
 
 ### Documentation (this feature)
 
 ```text
-specs/[###-feature]/
-├── plan.md              # This file (/sp.plan command output)
-├── research.md          # Phase 0 output (/sp.plan command)
-├── data-model.md        # Phase 1 output (/sp.plan command)
-├── quickstart.md        # Phase 1 output (/sp.plan command)
-├── contracts/           # Phase 1 output (/sp.plan command)
-└── tasks.md             # Phase 2 output (/sp.tasks command - NOT created by /sp.plan)
+specs/005-mark-complete/
+├── spec.md                           # Feature requirements
+├── plan.md                           # This file
+├── research.md                       # Phase 0: Technical decisions
+├── data-model.md                     # Phase 1: Entity extensions
+├── quickstart.md                     # Phase 1: Developer guide
+├── contracts/                        # Phase 1: API contracts
+│   ├── tasklist_completion_methods.md     # mark_complete/unmark methods
+│   ├── cli_mark_complete_handler.md       # CLI handlers
+│   └── completion_validation.md           # Validation functions
+├── checklists/
+│   └── requirements.md              # Spec quality validation (PASS)
+└── tasks.md                         # Phase 2: Generated by /sp.tasks (NOT YET CREATED)
 ```
 
 ### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
 src/
 ├── models/
+│   ├── task.py           # Task entity (from 001-add-task, NO CHANGES)
+│   └── tasklist.py       # TaskList class (EXTEND with mark_complete/unmark methods)
 ├── services/
-├── cli/
-└── lib/
+│   └── validation.py     # Validation functions (NEW - optional extraction)
+└── cli/
+    ├── menu.py           # Main menu (UPDATE with options 5 & 6)
+    └── handlers.py       # CLI handlers (ADD handle_mark_complete, handle_reopen_task)
 
 tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+├── unit/
+│   ├── test_tasklist_completion.py    # NEW - TaskList method tests
+│   └── test_validation.py             # NEW - Validation function tests (if extracted)
+└── integration/
+    └── test_cli_mark_complete.py      # NEW - CLI workflow tests
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Structure Decision**: Single project structure. Console application with models/services/cli separation. No changes to existing file organization - new code integrates seamlessly with 001-add-task foundation.
+
+---
 
 ## Complexity Tracking
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+**No violations**. All complexity justified by Phase I constraints and constitution principles.
+
+---
+
+## Next Steps
+
+**Immediate** (after planning):
+1. Run `/sp.tasks mark complete feature` to generate ordered task breakdown
+2. Review `quickstart.md` for implementation guide
+3. Set up test files based on templates in quickstart
+
+**Ready for Implementation**: Yes
