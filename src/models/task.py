@@ -248,3 +248,69 @@ class TaskList:
             [Task(id=1, completed=False), Task(id=3, completed=False)]
         """
         return [task for task in self._tasks if task.completed == completed]
+
+    def mark_complete(self, task_id: int) -> tuple[bool, str]:
+        """Mark a pending task as complete.
+
+        Args:
+            task_id: Unique identifier of task to mark complete
+
+        Returns:
+            Tuple[bool, str]: (success, message)
+                - (True, confirmation_msg) on success
+                - (True, warning_msg) if already completed (idempotent)
+                - (False, error_msg) if task not found
+
+        Side Effects:
+            On success:
+            - Sets task.completed = True
+            - Updates task.updated_at = datetime.now(UTC)
+            - Preserves all other task fields
+        """
+        task = self.find_by_id(task_id)
+
+        if task is None:
+            return False, f"Error: Task with ID {task_id} not found"
+
+        if task.completed:
+            # Idempotent: Already completed, but not an error
+            return True, f"Task {task_id} is already completed"
+
+        # Atomic update
+        task.completed = True
+        task.updated_at = datetime.now(UTC)
+
+        return True, f"✓ Task {task_id} marked as complete"
+
+    def unmark_complete(self, task_id: int) -> tuple[bool, str]:
+        """Reopen a completed task (change status to pending).
+
+        Args:
+            task_id: Unique identifier of task to reopen
+
+        Returns:
+            Tuple[bool, str]: (success, message)
+                - (True, confirmation_msg) on success
+                - (True, warning_msg) if already pending (idempotent)
+                - (False, error_msg) if task not found
+
+        Side Effects:
+            On success:
+            - Sets task.completed = False
+            - Updates task.updated_at = datetime.now(UTC)
+            - Preserves all other task fields
+        """
+        task = self.find_by_id(task_id)
+
+        if task is None:
+            return False, f"Error: Task with ID {task_id} not found"
+
+        if not task.completed:
+            # Idempotent: Already pending, but not an error
+            return True, f"Task {task_id} is already pending"
+
+        # Atomic update
+        task.completed = False
+        task.updated_at = datetime.now(UTC)
+
+        return True, f"✓ Task {task_id} reopened (marked as pending)"

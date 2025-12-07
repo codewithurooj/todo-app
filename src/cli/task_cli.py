@@ -154,7 +154,7 @@ def update_task_cli(tasklist):
     Args:
         tasklist: TaskList instance to update task in
     """
-    from src.utils.validators import validate_task_id, validate_title, validate_description
+    from src.utils.validators import validate_description, validate_task_id, validate_title
 
     print("\n" + "=" * 50)
     print("           UPDATE TASK")
@@ -351,3 +351,135 @@ def view_all_tasks_cli(tasklist):
     output = format_task_list(tasks, context="all")
     print(output)
     print("=" * 50)
+
+
+def mark_complete_cli(tasklist: TaskList) -> None:
+    """Handle marking task as complete via CLI.
+
+    Prompts user for task ID, validates input, calls TaskList.mark_complete(),
+    and displays result message.
+
+    Args:
+        tasklist: TaskList instance containing tasks
+
+    Side Effects:
+        - Prompts user for input via console
+        - Prints confirmation or error message
+        - Modifies task completion status if successful
+    """
+    from src.utils.validators import validate_task_id
+
+    print("\n" + "=" * 50)
+    print("           MARK TASK COMPLETE")
+    print("=" * 50)
+
+    # Check if list is empty
+    if not tasklist.get_all_tasks():
+        print("\nNo tasks available to mark complete.")
+        print("Add some tasks first.")
+        return
+
+    # Display current tasks for reference
+    print("\nCurrent tasks:")
+    for task in tasklist.get_all_tasks():
+        status = "✓" if task.completed else " "
+        print(f"  [{status}] #{task.id}: {task.title}")
+
+    # Prompt for task ID with validation
+    while True:
+        task_id_input = input(
+            "\nEnter task ID to mark as complete (or 'cancel' to abort): "
+        ).strip()
+
+        # Validate ID
+        is_valid, task_id, error_msg = validate_task_id(task_id_input)
+
+        # Handle cancel
+        if error_msg == "CANCEL":
+            print("Mark complete operation cancelled.")
+            return
+
+        # Handle validation error
+        if not is_valid:
+            print(f"\n{error_msg}")
+            print("Please try again.")
+            continue
+
+        # ID is valid, break the loop
+        break
+
+    # Execute mark complete operation
+    success, message = tasklist.mark_complete(task_id)
+
+    # Display result
+    print("\n" + "-" * 50)
+    if success:
+        print(message)
+    else:
+        print(message)
+    print("-" * 50)
+
+
+def reopen_task_cli(tasklist: TaskList) -> None:
+    """Handle reopening completed task via CLI.
+
+    Prompts user for task ID, validates input, calls TaskList.unmark_complete(),
+    and displays result message.
+
+    Args:
+        tasklist: TaskList instance containing tasks
+
+    Side Effects:
+        - Prompts user for input via console
+        - Prints confirmation or error message
+        - Modifies task completion status if successful
+    """
+    from src.utils.validators import validate_task_id
+
+    print("\n" + "=" * 50)
+    print("           REOPEN COMPLETED TASK")
+    print("=" * 50)
+
+    # Check if list is empty
+    if not tasklist.get_all_tasks():
+        print("\nNo tasks available to reopen.")
+        print("Add some tasks first.")
+        return
+
+    # Display current tasks for reference
+    print("\nCurrent tasks:")
+    for task in tasklist.get_all_tasks():
+        status = "✓" if task.completed else " "
+        print(f"  [{status}] #{task.id}: {task.title}")
+
+    # Prompt for task ID with validation
+    while True:
+        task_id_input = input("\nEnter task ID to reopen (or 'cancel' to abort): ").strip()
+
+        # Validate ID
+        is_valid, task_id, error_msg = validate_task_id(task_id_input)
+
+        # Handle cancel
+        if error_msg == "CANCEL":
+            print("Reopen operation cancelled.")
+            return
+
+        # Handle validation error
+        if not is_valid:
+            print(f"\n{error_msg}")
+            print("Please try again.")
+            continue
+
+        # ID is valid, break the loop
+        break
+
+    # Execute reopen operation
+    success, message = tasklist.unmark_complete(task_id)
+
+    # Display result
+    print("\n" + "-" * 50)
+    if success:
+        print(message)
+    else:
+        print(message)
+    print("-" * 50)

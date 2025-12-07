@@ -5,8 +5,15 @@ A simple in-memory todo list manager with CRUD operations.
 Phase I: Console interface with in-memory storage (no persistence).
 """
 
+from src.cli.task_cli import (
+    add_task_cli,
+    delete_task_cli,
+    mark_complete_cli,
+    reopen_task_cli,
+    update_task_cli,
+    view_all_tasks_cli,
+)
 from src.models.task import TaskList
-from src.cli.task_cli import add_task_cli, delete_task_cli, update_task_cli, view_all_tasks_cli
 
 
 def display_menu() -> None:
@@ -18,7 +25,8 @@ def display_menu() -> None:
     print("  2. View Tasks")
     print("  3. Update Task")
     print("  4. Delete Task")
-    print("  5. Mark Complete")
+    print("  5. Mark Task Complete")
+    print("  6. Reopen Completed Task")
     print("  0. Exit")
     print("=" * 50)
 
@@ -40,7 +48,7 @@ def main() -> None:
         display_menu()
 
         try:
-            choice = input("\nEnter your choice (0-5): ").strip()
+            choice = input("\nEnter your choice (0-6): ").strip()
 
             if choice == "1":
                 add_task_cli(tasklist)
@@ -55,7 +63,10 @@ def main() -> None:
                 delete_task_cli(tasklist)
 
             elif choice == "5":
-                print("\nMark Complete - Coming soon in feature 005-mark-complete")
+                mark_complete_cli(tasklist)
+
+            elif choice == "6":
+                reopen_task_cli(tasklist)
 
             elif choice == "0":
                 print("\n" + "=" * 50)
@@ -65,7 +76,7 @@ def main() -> None:
                 break
 
             else:
-                print("\nInvalid choice. Please enter a number between 0 and 5.")
+                print("\nInvalid choice. Please enter a number between 0 and 6.")
 
         except KeyboardInterrupt:
             print("\n\nApplication interrupted. Exiting...")

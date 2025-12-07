@@ -38,14 +38,14 @@ description: "Task list for Mark Task Complete feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T001 Extend TaskList with mark_complete() method in src/models/tasklist.py
-- [ ] T002 Extend TaskList with unmark_complete() method in src/models/tasklist.py
-- [ ] T003 Implement task_id validation in mark_complete() method in src/models/tasklist.py
-- [ ] T004 Implement task_id validation in unmark_complete() method in src/models/tasklist.py
-- [ ] T005 Implement idempotent behavior for already-completed tasks in mark_complete() in src/models/tasklist.py
-- [ ] T006 Implement idempotent behavior for already-pending tasks in unmark_complete() in src/models/tasklist.py
-- [ ] T007 Implement atomic update of completed field and updated_at timestamp in mark_complete() in src/models/tasklist.py
-- [ ] T008 Implement atomic update of completed field and updated_at timestamp in unmark_complete() in src/models/tasklist.py
+- [X] T001 Extend TaskList with mark_complete() method in src/models/tasklist.py
+- [X] T002 Extend TaskList with unmark_complete() method in src/models/tasklist.py
+- [X] T003 Implement task_id validation in mark_complete() method in src/models/tasklist.py
+- [X] T004 Implement task_id validation in unmark_complete() method in src/models/tasklist.py
+- [X] T005 Implement idempotent behavior for already-completed tasks in mark_complete() in src/models/tasklist.py
+- [X] T006 Implement idempotent behavior for already-pending tasks in unmark_complete() in src/models/tasklist.py
+- [X] T007 Implement atomic update of completed field and updated_at timestamp in mark_complete() in src/models/tasklist.py
+- [X] T008 Implement atomic update of completed field and updated_at timestamp in unmark_complete() in src/models/tasklist.py
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -59,18 +59,18 @@ description: "Task list for Mark Task Complete feature implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Create handle_mark_complete() function in src/cli/handlers.py
-- [ ] T010 [US1] Add task ID prompt "Enter task ID to mark complete: " in handle_mark_complete()
-- [ ] T011 [US1] Integrate validate_task_id() from utils.validators into handle_mark_complete()
-- [ ] T012 [US1] Implement invalid ID format error handling in handle_mark_complete()
-- [ ] T013 [US1] Implement invalid ID range error handling (zero, negative) in handle_mark_complete()
-- [ ] T014 [US1] Call TaskList.mark_complete() with validated task_id in handle_mark_complete()
-- [ ] T015 [US1] Display success message from mark_complete() response in handle_mark_complete()
-- [ ] T016 [US1] Display error message from mark_complete() response in handle_mark_complete()
-- [ ] T017 [US1] Display idempotent warning message when task already completed in handle_mark_complete()
-- [ ] T018 [US1] Return to main menu after mark complete operation in handle_mark_complete()
-- [ ] T019 [US1] Add "Mark Task Complete" menu option to main menu in src/cli/menu.py
-- [ ] T020 [US1] Wire handle_mark_complete() to menu selection in main.py
+- [X] T009 [US1] Create handle_mark_complete() function in src/cli/handlers.py
+- [X] T010 [US1] Add task ID prompt "Enter task ID to mark complete: " in handle_mark_complete()
+- [X] T011 [US1] Integrate validate_task_id() from utils.validators into handle_mark_complete()
+- [X] T012 [US1] Implement invalid ID format error handling in handle_mark_complete()
+- [X] T013 [US1] Implement invalid ID range error handling (zero, negative) in handle_mark_complete()
+- [X] T014 [US1] Call TaskList.mark_complete() with validated task_id in handle_mark_complete()
+- [X] T015 [US1] Display success message from mark_complete() response in handle_mark_complete()
+- [X] T016 [US1] Display error message from mark_complete() response in handle_mark_complete()
+- [X] T017 [US1] Display idempotent warning message when task already completed in handle_mark_complete()
+- [X] T018 [US1] Return to main menu after mark complete operation in handle_mark_complete()
+- [X] T019 [US1] Add "Mark Task Complete" menu option to main menu in src/cli/menu.py
+- [X] T020 [US1] Wire handle_mark_complete() to menu selection in main.py
 
 **Checkpoint**: At this point, User Story 1 (Mark Complete) should be fully functional and testable independently
 
@@ -84,18 +84,18 @@ description: "Task list for Mark Task Complete feature implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T021 [US2] Create handle_reopen_task() function in src/cli/handlers.py
-- [ ] T022 [US2] Add task ID prompt "Enter task ID to reopen: " in handle_reopen_task()
-- [ ] T023 [US2] Integrate validate_task_id() from utils.validators into handle_reopen_task()
-- [ ] T024 [US2] Implement invalid ID format error handling in handle_reopen_task()
-- [ ] T025 [US2] Implement invalid ID range error handling (zero, negative) in handle_reopen_task()
-- [ ] T026 [US2] Call TaskList.unmark_complete() with validated task_id in handle_reopen_task()
-- [ ] T027 [US2] Display success message from unmark_complete() response in handle_reopen_task()
-- [ ] T028 [US2] Display error message from unmark_complete() response in handle_reopen_task()
-- [ ] T029 [US2] Display idempotent warning message when task already pending in handle_reopen_task()
-- [ ] T030 [US2] Return to main menu after reopen operation in handle_reopen_task()
-- [ ] T031 [US2] Add "Reopen Completed Task" menu option to main menu in src/cli/menu.py
-- [ ] T032 [US2] Wire handle_reopen_task() to menu selection in main.py
+- [X] T021 [US2] Create handle_reopen_task() function in src/cli/handlers.py
+- [X] T022 [US2] Add task ID prompt "Enter task ID to reopen: " in handle_reopen_task()
+- [X] T023 [US2] Integrate validate_task_id() from utils.validators into handle_reopen_task()
+- [X] T024 [US2] Implement invalid ID format error handling in handle_reopen_task()
+- [X] T025 [US2] Implement invalid ID range error handling (zero, negative) in handle_reopen_task()
+- [X] T026 [US2] Call TaskList.unmark_complete() with validated task_id in handle_reopen_task()
+- [X] T027 [US2] Display success message from unmark_complete() response in handle_reopen_task()
+- [X] T028 [US2] Display error message from unmark_complete() response in handle_reopen_task()
+- [X] T029 [US2] Display idempotent warning message when task already pending in handle_reopen_task()
+- [X] T030 [US2] Return to main menu after reopen operation in handle_reopen_task()
+- [X] T031 [US2] Add "Reopen Completed Task" menu option to main menu in src/cli/menu.py
+- [X] T032 [US2] Wire handle_reopen_task() to menu selection in main.py
 
 **Checkpoint**: At this point, User Stories 1 AND 2 (Mark Complete + Reopen) should both work independently
 
