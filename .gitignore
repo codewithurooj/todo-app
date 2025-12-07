@@ -48,3 +48,6 @@ nul
 
 # UV
 .venv/
+
+# Documentation - Exclude PDFs
+*.pdf
