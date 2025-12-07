@@ -218,8 +218,8 @@ pytest tests/unit/test_task_model.py -v
 
 ### Tests (TDD - Write First)
 
-- [ ] T016 [P] [US2] Write unit tests for task with description in tests/unit/test_task_model.py (task with description, None description, empty string description)
-- [ ] T017 [P] [US2] Write unit tests for description validation in tests/unit/test_validators.py (valid, too long, None, empty)
+-[x] T016 [P] [US2] Write unit tests for task with description in tests/unit/test_task_model.py (task with description, None description, empty string description)
+-[x] T017 [P] [US2] Write unit tests for description validation in tests/unit/test_validators.py (valid, too long, None, empty)
 
 **Key Test Cases**:
 ```python
@@ -235,8 +235,8 @@ def test_description_max_length():
 
 ### Implementation
 
-- [ ] T018 [US2] Update CLI add task handler in src/cli/task_cli.py (prompt for description, validate, pass to add_task)
-- [ ] T019 [US2] Update task display in view tasks handler to show description preview (first 50 chars)
+-[x] T018 [US2] Update CLI add task handler in src/cli/task_cli.py (prompt for description, validate, pass to add_task)
+-[x] T019 [US2] Update task display in view tasks handler to show description preview (first 50 chars)
 
 **Files Modified**: `src/cli/task_cli.py`
 
@@ -273,9 +273,9 @@ pytest tests/unit/test_validators.py::test_description_validation -v
 
 ### Tests (TDD - Write First)
 
-- [ ] T020 [P] [US3] Write unit tests for empty title validation in tests/unit/test_validators.py
-- [ ] T021 [P] [US3] Write unit tests for title length validation in tests/unit/test_validators.py (boundary: 200 chars, 201 chars)
-- [ ] T022 [P] [US3] Write unit tests for description length validation in tests/unit/test_validators.py (boundary: 1000 chars, 1001 chars)
+-[x] T020 [P] [US3] Write unit tests for empty title validation in tests/unit/test_validators.py
+-[x] T021 [P] [US3] Write unit tests for title length validation in tests/unit/test_validators.py (boundary: 200 chars, 201 chars)
+-[x] T022 [P] [US3] Write unit tests for description length validation in tests/unit/test_validators.py (boundary: 1000 chars, 1001 chars)
 
 **Key Test Cases**:
 ```python
@@ -291,10 +291,10 @@ def test_title_201_chars_rejected():
 
 ### Implementation
 
-- [ ] T023 [US3] Add validation to CLI add task handler in src/cli/task_cli.py (call validate_title, display errors, retry loop)
-- [ ] T024 [US3] Add description validation to CLI handler (call validate_description, display errors, retry loop)
-- [ ] T025 [US3] Implement cancel functionality in CLI handler (detect "cancel" input, discard task, return to menu)
-- [ ] T026 [US3] Add error message formatting helper in src/utils/validators.py (format validation errors consistently)
+-[x] T023 [US3] Add validation to CLI add task handler in src/cli/task_cli.py (call validate_title, display errors, retry loop)
+-[x] T024 [US3] Add description validation to CLI handler (call validate_description, display errors, retry loop)
+-[x] T025 [US3] Implement cancel functionality in CLI handler (detect "cancel" input, discard task, return to menu)
+-[x] T026 [US3] Add error message formatting helper in src/utils/validators.py (format validation errors consistently)
 
 **Files Modified**: `src/cli/task_cli.py`, `src/utils/validators.py`
 
@@ -326,8 +326,8 @@ pytest tests/unit/test_validators.py -v
 
 ### Integration Tests
 
-- [ ] T027 [P] Write integration test for full add task flow in tests/integration/test_add_task_flow.py (title only, with description, error handling, cancel)
-- [ ] T028 [P] Write integration test for edge cases (unicode, special chars, rapid creation, whitespace trimming)
+- [x] - T027 [P] Write integration test for full add task flow in tests/integration/test_add_task_flow.py (title only, with description, error handling, cancel)
+- [x] - T028 [P] Write integration test for edge cases (unicode, special chars, rapid creation, whitespace trimming)
 
 **Files Created**: `tests/integration/test_add_task_flow.py`
 
@@ -345,10 +345,10 @@ def test_whitespace_trimming():
 
 ### Documentation & Polish
 
-- [ ] T029 Add comprehensive docstrings to all classes and functions in src/
-- [ ] T030 Update README.md with feature description, setup instructions, usage examples
-- [ ] T031 Run code quality tools and fix all violations (ruff, black, mypy)
-- [ ] T032 Measure and document test coverage (pytest-cov, aim for >90%)
+- [x] - T029 Add comprehensive docstrings to all classes and functions in src/
+- [x] - T030 Update README.md with feature description, setup instructions, usage examples
+- [x] - T031 Run code quality tools and fix all violations (ruff, black, mypy)
+- [x] - T032 Measure and document test coverage (pytest-cov, aim for >90%)
 
 **Files Modified**: All `src/` files, `README.md`
 

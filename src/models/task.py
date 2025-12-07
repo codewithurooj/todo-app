@@ -5,8 +5,7 @@ Phase I implementation uses in-memory storage with no persistence.
 """
 
 from dataclasses import dataclass, field
-from datetime import datetime, UTC
-from typing import Optional
+from datetime import UTC, datetime
 
 
 @dataclass
@@ -24,7 +23,7 @@ class Task:
 
     id: int
     title: str
-    description: Optional[str] = None
+    description: str | None = None
     completed: bool = False
     created_at: datetime = field(default_factory=lambda: datetime.now(UTC))
     updated_at: datetime = field(default_factory=lambda: datetime.now(UTC))
@@ -53,9 +52,7 @@ class TaskList:
         self._tasks: list[Task] = []
         self._next_id: int = 1
 
-    def add_task(
-        self, title: str, description: Optional[str] = None
-    ) -> Task:
+    def add_task(self, title: str, description: str | None = None) -> Task:
         """Create and add a new task to the list.
 
         Args:
@@ -89,7 +86,7 @@ class TaskList:
         """
         return self._tasks
 
-    def find_by_id(self, task_id: int) -> Optional[Task]:
+    def find_by_id(self, task_id: int) -> Task | None:
         """Find a task by its ID.
 
         Args:

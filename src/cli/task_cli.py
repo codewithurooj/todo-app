@@ -3,9 +3,8 @@
 This module provides command-line interface functions for task management.
 """
 
-from typing import Optional
 from src.models.task import TaskList
-from src.utils.validators import validate_title, validate_description
+from src.utils.validators import validate_description, validate_title
 
 
 def add_task_cli(tasklist: TaskList) -> None:
@@ -40,7 +39,7 @@ def add_task_cli(tasklist: TaskList) -> None:
 
     # Prompt for description (optional)
     print("\nEnter description (optional, press Enter to skip):")
-    description = input("> ").strip()
+    description: str | None = input("> ").strip()
 
     # Validate description if provided
     if description:

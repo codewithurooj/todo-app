@@ -4,10 +4,8 @@ This module provides validation for task fields (title, description) with
 clear error messages for user feedback.
 """
 
-from typing import Tuple, Optional
 
-
-def validate_title(title: str) -> Tuple[bool, str]:
+def validate_title(title: str) -> tuple[bool, str]:
     """Validate task title input.
 
     Args:
@@ -38,7 +36,7 @@ def validate_title(title: str) -> Tuple[bool, str]:
     return (True, "")
 
 
-def validate_description(description: Optional[str]) -> Tuple[bool, str]:
+def validate_description(description: str | None) -> tuple[bool, str]:
     """Validate task description input.
 
     Args:
