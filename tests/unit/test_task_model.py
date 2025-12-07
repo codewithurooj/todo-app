@@ -126,3 +126,73 @@ class TestTaskList:
 
         found = tasklist.find_by_id(999)
         assert found is None
+
+    # T001: Delete existing task
+    def test_delete_existing_task(self) -> None:
+        """Task with valid ID is removed from list."""
+        tasklist = TaskList()
+        task = tasklist.add_task("Task to delete")
+
+        success, msg = tasklist.delete_task(task.id)
+
+        assert success is True
+        assert "deleted successfully" in msg.lower()
+        assert len(tasklist.get_all_tasks()) == 0
+
+    # T002: Delete validation - task exists check
+    def test_delete_nonexistent_task_returns_error(self) -> None:
+        """Attempting to delete non-existent ID returns error."""
+        tasklist = TaskList()
+        tasklist.add_task("Task 1")
+
+        success, msg = tasklist.delete_task(999)
+
+        assert success is False
+        assert "not found" in msg.lower()
+
+    # T002: Delete validation - empty list handling
+    def test_delete_on_empty_list_returns_error(self) -> None:
+        """Delete on empty list returns error message."""
+        tasklist = TaskList()
+
+        success, msg = tasklist.delete_task(1)
+
+        assert success is False
+        assert "not found" in msg.lower()
+
+    # T003: Task ID preservation after deletion
+    def test_delete_preserves_remaining_ids(self) -> None:
+        """After deleting task #2 from [1, 2, 3], result is [1, 3]."""
+        tasklist = TaskList()
+        task1 = tasklist.add_task("Task 1")
+        task2 = tasklist.add_task("Task 2")
+        task3 = tasklist.add_task("Task 3")
+
+        tasklist.delete_task(task2.id)
+
+        remaining = tasklist.get_all_tasks()
+        assert len(remaining) == 2
+        assert [t.id for t in remaining] == [1, 3]  # IDs not renumbered
+
+    # T003: Delete only task results in empty list
+    def test_delete_only_task_results_in_empty_list(self) -> None:
+        """Deleting last task leaves empty list."""
+        tasklist = TaskList()
+        task = tasklist.add_task("Only task")
+
+        success, msg = tasklist.delete_task(task.id)
+
+        assert success is True
+        assert len(tasklist.get_all_tasks()) == 0
+
+    # T003: Deleted IDs are not reused
+    def test_deleted_ids_not_reused(self) -> None:
+        """After deleting ID 1, next task created has ID 2."""
+        tasklist = TaskList()
+        task1 = tasklist.add_task("Task 1")
+        tasklist.delete_task(task1.id)
+
+        task2 = tasklist.add_task("Task 2")
+
+        assert task2.id == 2  # Not 1
+        assert len(tasklist.get_all_tasks()) == 1

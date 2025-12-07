@@ -6,7 +6,7 @@ Phase I: Console interface with in-memory storage (no persistence).
 """
 
 from src.models.task import TaskList
-from src.cli.task_cli import add_task_cli
+from src.cli.task_cli import add_task_cli, delete_task_cli
 
 
 def display_menu() -> None:

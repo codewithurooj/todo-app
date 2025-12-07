@@ -82,7 +82,7 @@ This project follows **7 Core Principles** defined in our [Constitution](.specif
 - ✅ Constitution v1.0.0 established
 - ✅ Spec Generator Subagent (development tool)
 - ✅ Add task (MVP complete with title and description)
-- ⏳ Delete task
+- ✅ Delete task (MVP complete with validation and confirmation)
 - ⏳ Update task
 - ⏳ View tasks
 - ⏳ Mark task complete
@@ -245,7 +245,25 @@ Enter description: Create slides for quarterly review meeting
 
 #### ⏳ View Tasks (Feature 004) - Coming Soon
 #### ⏳ Update Task (Feature 003) - Coming Soon
-#### ⏳ Delete Task (Feature 002) - Coming Soon
+#### ✅ Delete Task (Feature 002)
+- Remove tasks by ID with confirmation prompt
+- ID validation (numeric, positive, exists)
+- Safe deletion with confirmation (y/n)
+- ID preservation (remaining tasks keep their IDs)
+- Clear error messages for invalid inputs
+- Cancel operation at any time
+
+**Example**:
+```
+Enter task ID to delete (or 'cancel' to abort): 2
+
+Delete task #2: 'Buy groceries'?
+Confirm (y/n): y
+
+--------------------------------------------------
+✓ Task #2 'Buy groceries' deleted successfully
+--------------------------------------------------
+```
 #### ⏳ Mark Complete (Feature 005) - Coming Soon
 
 ## 📁 Project Structure

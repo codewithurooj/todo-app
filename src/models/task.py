@@ -99,3 +99,35 @@ class TaskList:
             if task.id == task_id:
                 return task
         return None
+
+    def delete_task(self, task_id: int) -> tuple[bool, str]:
+        """Delete a task by ID.
+
+        Args:
+            task_id: The ID of the task to delete
+
+        Returns:
+            Tuple of (success: bool, message: str)
+            - (True, success_message) if task was deleted
+            - (False, error_message) if task not found
+
+        Side Effects:
+            - Removes task from _tasks list
+            - Does NOT decrement _next_id
+            - Reduces list size by 1
+
+        Guarantees:
+            - Remaining tasks preserve their IDs
+            - Remaining tasks maintain original order
+            - Deleted ID is never reused
+        """
+        # Find the task first to get its title for the success message
+        task = self.find_by_id(task_id)
+
+        if not task:
+            return False, f"Error: Task #{task_id} not found. Please enter a valid task ID."
+
+        # Remove task using list comprehension (preserves order and IDs)
+        self._tasks = [t for t in self._tasks if t.id != task_id]
+
+        return True, f"Task #{task_id} '{task.title}' deleted successfully"
