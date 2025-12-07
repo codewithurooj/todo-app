@@ -131,3 +131,92 @@ class TaskList:
         self._tasks = [t for t in self._tasks if t.id != task_id]
 
         return True, f"Task #{task_id} '{task.title}' deleted successfully"
+
+    def update_task_title(self, task_id: int, new_title: str) -> tuple[bool, str]:
+        """Update a task's title.
+
+        Args:
+            task_id: The ID of the task to update
+            new_title: The new title (will be stripped of whitespace)
+
+        Returns:
+            Tuple of (success: bool, message: str)
+            - (True, success_message) if task was updated
+            - (False, error_message) if task not found
+
+        Side Effects:
+            - Updates task title
+            - Updates task updated_at timestamp
+            - Preserves all other fields (ID, description, completed, created_at)
+        """
+        task = self.find_by_id(task_id)
+
+        if not task:
+            return False, f"Error: Task #{task_id} not found. Please enter a valid task ID."
+
+        # Update title and timestamp
+        task.title = new_title.strip()
+        task.updated_at = datetime.now(UTC)
+
+        return True, f"Task #{task_id} title updated successfully"
+
+    def update_task_description(self, task_id: int, new_description: str | None) -> tuple[bool, str]:
+        """Update a task's description.
+
+        Args:
+            task_id: The ID of the task to update
+            new_description: The new description (will be stripped, None if empty)
+
+        Returns:
+            Tuple of (success: bool, message: str)
+            - (True, success_message) if task was updated
+            - (False, error_message) if task not found
+
+        Side Effects:
+            - Updates task description
+            - Updates task updated_at timestamp
+            - Preserves all other fields (ID, title, completed, created_at)
+        """
+        task = self.find_by_id(task_id)
+
+        if not task:
+            return False, f"Error: Task #{task_id} not found. Please enter a valid task ID."
+
+        # Update description and timestamp
+        if new_description and new_description.strip():
+            task.description = new_description.strip()
+        else:
+            task.description = None
+
+        task.updated_at = datetime.now(UTC)
+
+        return True, f"Task #{task_id} description updated successfully"
+
+    def update_task_status(self, task_id: int, completed: bool) -> tuple[bool, str]:
+        """Update a task's completion status.
+
+        Args:
+            task_id: The ID of the task to update
+            completed: The new completion status (True = complete, False = incomplete)
+
+        Returns:
+            Tuple of (success: bool, message: str)
+            - (True, success_message) if task was updated
+            - (False, error_message) if task not found
+
+        Side Effects:
+            - Updates task completed status
+            - Updates task updated_at timestamp
+            - Preserves all other fields (ID, title, description, created_at)
+        """
+        task = self.find_by_id(task_id)
+
+        if not task:
+            return False, f"Error: Task #{task_id} not found. Please enter a valid task ID."
+
+        # Update status and timestamp
+        task.completed = completed
+        task.updated_at = datetime.now(UTC)
+
+        status_msg = "complete" if completed else "incomplete"
+        return True, f"Task #{task_id} marked as {status_msg}"

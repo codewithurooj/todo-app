@@ -38,12 +38,12 @@ description: "Task list for Update Task feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T001 [P] Extend TaskService with update_task_title() method in src/services/task_service.py
-- [ ] T002 [P] Extend TaskService with update_task_description() method in src/services/task_service.py
-- [ ] T003 [P] Extend TaskService with update_task_status() method in src/services/task_service.py
-- [ ] T004 Create update_task_cli() function with ID prompt and validation in src/cli/task_cli.py
-- [ ] T005 Add "Update Task" menu option to main menu in src/cli/menu.py
-- [ ] T006 Wire update_task_cli() to menu selection in main.py
+- [X] T001 [P] Extend TaskService with update_task_title() method in src/services/task_service.py
+- [X] T002 [P] Extend TaskService with update_task_description() method in src/services/task_service.py
+- [X] T003 [P] Extend TaskService with update_task_status() method in src/services/task_service.py
+- [X] T004 Create update_task_cli() function with ID prompt and validation in src/cli/task_cli.py
+- [X] T005 Add "Update Task" menu option to main menu in src/cli/menu.py
+- [X] T006 Wire update_task_cli() to menu selection in main.py
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -57,18 +57,18 @@ description: "Task list for Update Task feature implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T007 [US1] Implement task ID validation in update_task_cli() - numeric check, existence check in src/cli/task_cli.py
-- [ ] T008 [US1] Implement display current task values before update in update_task_cli() in src/cli/task_cli.py
-- [ ] T009 [US1] Implement field selection menu (title/description/status/multiple/cancel) in update_task_cli() in src/cli/task_cli.py
-- [ ] T010 [US1] Implement title update flow - show current title, prompt for new title in update_task_cli() in src/cli/task_cli.py
-- [ ] T011 [US1] Integrate validate_title() from utils.validators into title update flow in src/cli/task_cli.py
-- [ ] T012 [US1] Implement title update confirmation message in update_task_cli() in src/cli/task_cli.py
-- [ ] T013 [US1] Add empty task list check at start of update flow in update_task_cli() in src/cli/task_cli.py
-- [ ] T014 [US1] Add "cancel" keyword support at task ID prompt in update_task_cli() in src/cli/task_cli.py
-- [ ] T015 [US1] Add "cancel" keyword support at title input prompt in update_task_cli() in src/cli/task_cli.py
-- [ ] T016 [US1] Implement title length validation (max 200 chars) error handling in update_task_cli() in src/cli/task_cli.py
-- [ ] T017 [US1] Implement empty title validation error handling in update_task_cli() in src/cli/task_cli.py
-- [ ] T018 [US1] Implement whitespace trimming for updated titles in update_task_cli() in src/cli/task_cli.py
+- [X] T007 [US1] Implement task ID validation in update_task_cli() - numeric check, existence check in src/cli/task_cli.py
+- [X] T008 [US1] Implement display current task values before update in update_task_cli() in src/cli/task_cli.py
+- [X] T009 [US1] Implement field selection menu (title/description/status/multiple/cancel) in update_task_cli() in src/cli/task_cli.py
+- [X] T010 [US1] Implement title update flow - show current title, prompt for new title in update_task_cli() in src/cli/task_cli.py
+- [X] T011 [US1] Integrate validate_title() from utils.validators into title update flow in src/cli/task_cli.py
+- [X] T012 [US1] Implement title update confirmation message in update_task_cli() in src/cli/task_cli.py
+- [X] T013 [US1] Add empty task list check at start of update flow in update_task_cli() in src/cli/task_cli.py
+- [X] T014 [US1] Add "cancel" keyword support at task ID prompt in update_task_cli() in src/cli/task_cli.py
+- [X] T015 [US1] Add "cancel" keyword support at title input prompt in update_task_cli() in src/cli/task_cli.py
+- [X] T016 [US1] Implement title length validation (max 200 chars) error handling in update_task_cli() in src/cli/task_cli.py
+- [X] T017 [US1] Implement empty title validation error handling in update_task_cli() in src/cli/task_cli.py
+- [X] T018 [US1] Implement whitespace trimming for updated titles in update_task_cli() in src/cli/task_cli.py
 
 **Checkpoint**: At this point, User Story 1 (Update Title) should be fully functional and testable independently
 
@@ -84,10 +84,10 @@ description: "Task list for Update Task feature implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T019 [US3] Implement status toggle option in field selection menu in update_task_cli() in src/cli/task_cli.py
-- [ ] T020 [US3] Implement status toggle flow - flip completed boolean in update_task_cli() in src/cli/task_cli.py
-- [ ] T021 [US3] Implement status-specific confirmation messages ("marked as complete" / "marked as incomplete") in update_task_cli() in src/cli/task_cli.py
-- [ ] T022 [US3] Display completion status visual indicator when showing current task values in update_task_cli() in src/cli/task_cli.py
+- [X] T019 [US3] Implement status toggle option in field selection menu in update_task_cli() in src/cli/task_cli.py
+- [X] T020 [US3] Implement status toggle flow - flip completed boolean in update_task_cli() in src/cli/task_cli.py
+- [X] T021 [US3] Implement status-specific confirmation messages ("marked as complete" / "marked as incomplete") in update_task_cli() in src/cli/task_cli.py
+- [X] T022 [US3] Display completion status visual indicator when showing current task values in update_task_cli() in src/cli/task_cli.py
 
 **Checkpoint**: At this point, User Stories 1 AND 3 (Title + Status) should both work independently
 
