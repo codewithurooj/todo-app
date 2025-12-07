@@ -52,7 +52,7 @@ def main() -> None:
                 print("\nUpdate Task - Coming soon in feature 003-update-task")
 
             elif choice == "4":
-                print("\nDelete Task - Coming soon in feature 002-delete-task")
+                delete_task_cli(tasklist)
 
             elif choice == "5":
                 print("\nMark Complete - Coming soon in feature 005-mark-complete")

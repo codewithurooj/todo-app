@@ -93,10 +93,10 @@ pytest tests/unit/test_delete_cli.py  # T004
 
 ### Tests (TDD - Write First)
 
-- [ ] T001 [P] [US1] Write unit tests for TaskList.delete_task() in tests/unit/test_task_service.py (delete existing task, verify removal, ID preservation)
-- [ ] T002 [P] [US1] Write unit tests for delete validation in tests/unit/test_task_service.py (task exists check, empty list handling)
-- [ ] T003 [US1] Write unit tests for task ID preservation in tests/unit/test_task_service.py (verify remaining IDs unchanged after deletion)
-- [ ] T004 [P] [US1] Write unit tests for CLI delete handler in tests/unit/test_delete_cli.py (valid ID input, success message display)
+- [X] T001 [P] [US1] Write unit tests for TaskList.delete_task() in tests/unit/test_task_service.py (delete existing task, verify removal, ID preservation)
+- [X] T002 [P] [US1] Write unit tests for delete validation in tests/unit/test_task_service.py (task exists check, empty list handling)
+- [X] T003 [US1] Write unit tests for task ID preservation in tests/unit/test_task_service.py (verify remaining IDs unchanged after deletion)
+- [X] T004 [P] [US1] Write unit tests for CLI delete handler in tests/unit/test_delete_cli.py (valid ID input, success message display)
 
 **Test Files**: `tests/unit/test_task_service.py`, `tests/unit/test_delete_cli.py`
 
@@ -117,9 +117,9 @@ def test_delete_success_message_includes_id_and_title():
 
 ### Implementation
 
-- [ ] T005 [US1] Implement TaskList.delete_task(task_id) method in src/models/task.py (find task, remove from list, return success/error tuple)
-- [ ] T006 [US1] Create CLI handler handle_delete_task() in src/cli/task_cli.py (prompt for ID, validate input, call delete_task, display confirmation)
-- [ ] T007 [US1] Integrate delete handler into main menu in main.py (add "Delete Task" option, route to handler)
+- [X] T005 [US1] Implement TaskList.delete_task(task_id) method in src/models/task.py (find task, remove from list, return success/error tuple)
+- [X] T006 [US1] Create CLI handler handle_delete_task() in src/cli/task_cli.py (prompt for ID, validate input, call delete_task, display confirmation)
+- [X] T007 [US1] Integrate delete handler into main menu in main.py (add "Delete Task" option, route to handler)
 
 **Files Created**: `src/cli/task_cli.py` (if not exists from add task)
 **Files Modified**: `src/models/task.py`, `main.py`
@@ -157,11 +157,11 @@ pytest tests/unit/test_delete_cli.py -v
 
 ### Tests (TDD - Write First)
 
-- [ ] T008 [P] [US2] Write unit tests for non-existent task ID in tests/unit/test_task_service.py (attempt delete of ID 99, verify error message)
-- [ ] T009 [P] [US2] Write unit tests for invalid input validation in tests/unit/test_delete_cli.py (non-numeric, empty, special characters)
-- [ ] T010 [P] [US2] Write unit tests for empty list scenario in tests/unit/test_task_service.py (delete on empty list returns error)
-- [ ] T011 [P] [US2] Write unit tests for cancel operation in tests/unit/test_delete_cli.py (user types "cancel", operation aborted)
-- [ ] T012 [P] [US2] Write unit tests for leading zeros in tests/unit/test_delete_cli.py (ID "007" interpreted as 7)
+- [X] T008 [P] [US2] Write unit tests for non-existent task ID in tests/unit/test_task_service.py (attempt delete of ID 99, verify error message)
+- [X] T009 [P] [US2] Write unit tests for invalid input validation in tests/unit/test_delete_cli.py (non-numeric, empty, special characters)
+- [X] T010 [P] [US2] Write unit tests for empty list scenario in tests/unit/test_task_service.py (delete on empty list returns error)
+- [X] T011 [P] [US2] Write unit tests for cancel operation in tests/unit/test_delete_cli.py (user types "cancel", operation aborted)
+- [X] T012 [P] [US2] Write unit tests for leading zeros in tests/unit/test_delete_cli.py (ID "007" interpreted as 7)
 
 **Key Test Cases**:
 ```python
@@ -183,7 +183,7 @@ def test_leading_zeros_stripped():
 
 ### Implementation
 
-- [ ] T013 [US2] Add input validation to CLI delete handler in src/cli/task_cli.py (check numeric, check empty, check cancel, strip leading zeros, display errors)
+- [X] T013 [US2] Add input validation to CLI delete handler in src/cli/task_cli.py (check numeric, check empty, check cancel, strip leading zeros, display errors)
 
 **Files Modified**: `src/cli/task_cli.py`
 
@@ -221,9 +221,9 @@ pytest tests/unit/test_delete_cli.py -v
 
 ### Tests (TDD - Write First)
 
-- [ ] T014 [P] [US3] Write unit tests for confirmation prompt in tests/unit/test_delete_cli.py (prompt appears with task details)
-- [ ] T015 [P] [US3] Write unit tests for confirmation responses in tests/unit/test_delete_cli.py (y/yes confirms, n/no cancels, case-insensitive)
-- [ ] T016 [US3] Write unit tests for invalid confirmation input in tests/unit/test_delete_cli.py (re-prompts on invalid input)
+- [X] T014 [P] [US3] Write unit tests for confirmation prompt in tests/unit/test_delete_cli.py (prompt appears with task details)
+- [X] T015 [P] [US3] Write unit tests for confirmation responses in tests/unit/test_delete_cli.py (y/yes confirms, n/no cancels, case-insensitive)
+- [X] T016 [US3] Write unit tests for invalid confirmation input in tests/unit/test_delete_cli.py (re-prompts on invalid input)
 
 **Key Test Cases**:
 ```python
@@ -242,7 +242,7 @@ def test_invalid_confirmation_input_reprompts():
 
 ### Implementation
 
-- [ ] T017 [US3] Add confirmation prompt to CLI delete handler in src/cli/task_cli.py (display task details, prompt for y/n, validate response, delete only on yes)
+- [X] T017 [US3] Add confirmation prompt to CLI delete handler in src/cli/task_cli.py (display task details, prompt for y/n, validate response, delete only on yes)
 
 **Files Modified**: `src/cli/task_cli.py`
 
@@ -277,8 +277,8 @@ pytest tests/unit/test_delete_cli.py::test_confirmation -v
 
 ### Integration Tests
 
-- [ ] T018 [P] Write integration test for full delete flow in tests/integration/test_delete_task_flow.py (add task, delete, verify removal, check list)
-- [ ] T019 [P] Write integration test for edge cases in tests/integration/test_delete_task_flow.py (delete first/last/only task, rapid deletions, special IDs)
+- [X] T018 [P] Write integration test for full delete flow in tests/integration/test_delete_task_flow.py (add task, delete, verify removal, check list)
+- [X] T019 [P] Write integration test for edge cases in tests/integration/test_delete_task_flow.py (delete first/last/only task, rapid deletions, special IDs)
 
 **Files Created**: `tests/integration/test_delete_task_flow.py`
 
@@ -299,7 +299,7 @@ def test_delete_only_task_results_in_empty_list():
 
 ### Documentation & Polish
 
-- [ ] T020 Update README.md with delete feature description and usage examples
+- [X] T020 Update README.md with delete feature description and usage examples
 
 **Files Modified**: `README.md`
 
@@ -350,7 +350,7 @@ All tasks follow the required checklist format:
 
 **Example**:
 ```
-- [ ] T005 [US1] Implement TaskList.delete_task(task_id) method in src/models/task.py
+- [X] T005 [US1] Implement TaskList.delete_task(task_id) method in src/models/task.py
 ```
 
 ---
