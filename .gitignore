@@ -48,3 +48,4 @@ nul
 
 # UV
 .venv/
+*.pdf
