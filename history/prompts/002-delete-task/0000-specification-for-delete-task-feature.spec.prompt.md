@@ -1,5 +1,5 @@
 ---
-id: 0001
+id: 0000
 title: Specification for Delete Task feature
 stage: spec
 date: 2025-12-06
