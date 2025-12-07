@@ -280,7 +280,7 @@ class TaskList:
         task.completed = True
         task.updated_at = datetime.now(UTC)
 
-        return True, f"✓ Task {task_id} marked as complete"
+        return True, f"Task {task_id} marked as complete"
 
     def unmark_complete(self, task_id: int) -> tuple[bool, str]:
         """Reopen a completed task (change status to pending).
@@ -313,4 +313,4 @@ class TaskList:
         task.completed = False
         task.updated_at = datetime.now(UTC)
 
-        return True, f"✓ Task {task_id} reopened (marked as pending)"
+        return True, f"Task {task_id} reopened (marked as pending)"
