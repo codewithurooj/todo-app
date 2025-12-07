@@ -101,13 +101,13 @@ description: "Task list for Update Task feature implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T023 [US2] Implement description update option in field selection menu in update_task_cli() in src/cli/task_cli.py
-- [ ] T024 [US2] Implement description update flow - show current description, prompt for new in update_task_cli() in src/cli/task_cli.py
-- [ ] T025 [US2] Integrate validate_description() from utils.validators into description update flow in src/cli/task_cli.py
-- [ ] T026 [US2] Implement empty description handling - set to None when user presses Enter in update_task_cli() in src/cli/task_cli.py
-- [ ] T027 [US2] Implement description length validation (max 1000 chars) error handling in update_task_cli() in src/cli/task_cli.py
-- [ ] T028 [US2] Add "cancel" keyword support at description input prompt in update_task_cli() in src/cli/task_cli.py
-- [ ] T029 [US2] Implement description update confirmation message in update_task_cli() in src/cli/task_cli.py
+- [X] T023 [US2] Implement description update option in field selection menu in update_task_cli() in src/cli/task_cli.py
+- [X] T024 [US2] Implement description update flow - show current description, prompt for new in update_task_cli() in src/cli/task_cli.py
+- [X] T025 [US2] Integrate validate_description() from utils.validators into description update flow in src/cli/task_cli.py
+- [X] T026 [US2] Implement empty description handling - set to None when user presses Enter in update_task_cli() in src/cli/task_cli.py
+- [X] T027 [US2] Implement description length validation (max 1000 chars) error handling in update_task_cli() in src/cli/task_cli.py
+- [X] T028 [US2] Add "cancel" keyword support at description input prompt in update_task_cli() in src/cli/task_cli.py
+- [X] T029 [US2] Implement description update confirmation message in update_task_cli() in src/cli/task_cli.py
 
 **Checkpoint**: At this point, all P1 and P2 user stories should be independently functional
 
@@ -121,9 +121,9 @@ description: "Task list for Update Task feature implementation"
 
 ### Implementation for User Story 5
 
-- [ ] T030 [US5] Implement non-existent task ID error message with specific ID in update_task_cli() in src/cli/task_cli.py
-- [ ] T031 [US5] Implement non-numeric task ID error message and re-prompt in update_task_cli() in src/cli/task_cli.py
-- [ ] T032 [US5] Add task ID input with leading zeros handling (e.g., "007" → 7) in update_task_cli() in src/cli/task_cli.py
+- [X] T030 [US5] Implement non-existent task ID error message with specific ID in update_task_cli() in src/cli/task_cli.py
+- [X] T031 [US5] Implement non-numeric task ID error message and re-prompt in update_task_cli() in src/cli/task_cli.py
+- [X] T032 [US5] Add task ID input with leading zeros handling (e.g., "007" → 7) in update_task_cli() in src/cli/task_cli.py
 - [ ] T033 [US5] Enhance validation error messages to include constraints (max/min values) in update_task_cli() in src/cli/task_cli.py
 - [ ] T034 [US5] Show current/original value when re-prompting after validation error in update_task_cli() in src/cli/task_cli.py
 - [ ] T035 [US5] Ensure all error paths return to main menu without modifying task data in update_task_cli() in src/cli/task_cli.py
