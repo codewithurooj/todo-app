@@ -327,3 +327,27 @@ def update_task_cli(tasklist):
 
         else:
             print("Invalid choice. Please enter a number between 0 and 3.")
+
+
+def view_all_tasks_cli(tasklist):
+    """Display all tasks in the task list.
+
+    Shows tasks with ID, status icon, and title (truncated at 50 chars).
+    Displays empty message if no tasks exist.
+
+    Args:
+        tasklist: TaskList instance
+
+    Returns:
+        None (prints to console)
+    """
+    from src.lib.display import format_task_list
+
+    print("\n" + "=" * 50)
+    print("ALL TASKS")
+    print("=" * 50)
+
+    tasks = tasklist.get_all_tasks()
+    output = format_task_list(tasks, context="all")
+    print(output)
+    print("=" * 50)

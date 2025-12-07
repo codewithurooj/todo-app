@@ -38,15 +38,15 @@ description: "Task list for View Tasks feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T001 Create display formatting module src/lib/display.py with module docstring
-- [ ] T002 [P] Implement truncate_title() function in src/lib/display.py
-- [ ] T003 [P] Implement format_status() function in src/lib/display.py
-- [ ] T004 [P] Implement format_timestamp() function in src/lib/display.py
-- [ ] T005 [P] Implement format_task_list() function in src/lib/display.py
-- [ ] T006 [P] Implement format_task_detail() function in src/lib/display.py
-- [ ] T007 Extend TaskList with get_all_tasks() method in src/models/task.py
-- [ ] T008 Extend TaskList with get_task_by_id() method in src/models/task.py
-- [ ] T009 Extend TaskList with filter_tasks_by_status() method in src/models/task.py
+- [x] T001 Create display formatting module src/lib/display.py with module docstring
+- [x] T002 [P] Implement truncate_title() function in src/lib/display.py
+- [x] T003 [P] Implement format_status() function in src/lib/display.py
+- [x] T004 [P] Implement format_timestamp() function in src/lib/display.py
+- [x] T005 [P] Implement format_task_list() function in src/lib/display.py
+- [x] T006 [P] Implement format_task_detail() function in src/lib/display.py
+- [x] T007 Extend TaskList with get_all_tasks() method in src/models/task.py
+- [x] T008 Extend TaskList with get_task_by_id() method in src/models/task.py
+- [x] T009 Extend TaskList with filter_tasks_by_status() method in src/models/task.py
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -60,12 +60,12 @@ description: "Task list for View Tasks feature implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Create view_all_tasks_cli() function in src/cli/todo_cli.py
-- [ ] T011 [US1] Implement task retrieval using TaskList.get_all_tasks() in view_all_tasks_cli()
-- [ ] T012 [US1] Implement display formatting using format_task_list() with context="all" in view_all_tasks_cli()
-- [ ] T013 [US1] Add console output for formatted task list in view_all_tasks_cli()
-- [ ] T014 [US1] Add "View All Tasks" menu option to main menu in src/cli/menu.py
-- [ ] T015 [US1] Wire view_all_tasks_cli() to menu selection in main.py
+- [x] T010 [US1] Create view_all_tasks_cli() function in src/cli/todo_cli.py
+- [x] T011 [US1] Implement task retrieval using TaskList.get_all_tasks() in view_all_tasks_cli()
+- [x] T012 [US1] Implement display formatting using format_task_list() with context="all" in view_all_tasks_cli()
+- [x] T013 [US1] Add console output for formatted task list in view_all_tasks_cli()
+- [x] T014 [US1] Add "View All Tasks" menu option to main menu in src/cli/menu.py
+- [x] T015 [US1] Wire view_all_tasks_cli() to menu selection in main.py
 
 **Checkpoint**: At this point, User Story 1 (View All Tasks) should be fully functional and testable independently
 
@@ -79,9 +79,9 @@ description: "Task list for View Tasks feature implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T016 [US2] Implement empty list check in view_all_tasks_cli() in src/cli/todo_cli.py
-- [ ] T017 [US2] Add empty list message handling in format_task_list() for context="all" in src/lib/display.py
-- [ ] T018 [US2] Verify empty list message displays correctly when no tasks exist in view_all_tasks_cli()
+- [x] T016 [US2] Implement empty list check in view_all_tasks_cli() in src/cli/todo_cli.py
+- [x] T017 [US2] Add empty list message handling in format_task_list() for context="all" in src/lib/display.py
+- [x] T018 [US2] Verify empty list message displays correctly when no tasks exist in view_all_tasks_cli()
 
 **Checkpoint**: At this point, User Stories 1 AND 2 (View All + Empty State) should both work independently
 

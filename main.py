@@ -6,7 +6,7 @@ Phase I: Console interface with in-memory storage (no persistence).
 """
 
 from src.models.task import TaskList
-from src.cli.task_cli import add_task_cli, delete_task_cli, update_task_cli
+from src.cli.task_cli import add_task_cli, delete_task_cli, update_task_cli, view_all_tasks_cli
 
 
 def display_menu() -> None:
@@ -46,7 +46,7 @@ def main() -> None:
                 add_task_cli(tasklist)
 
             elif choice == "2":
-                print("\nView Tasks - Coming soon in feature 004-view-task")
+                view_all_tasks_cli(tasklist)
 
             elif choice == "3":
                 update_task_cli(tasklist)

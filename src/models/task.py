@@ -220,3 +220,31 @@ class TaskList:
 
         status_msg = "complete" if completed else "incomplete"
         return True, f"Task #{task_id} marked as {status_msg}"
+
+    def get_task_by_id(self, task_id: int) -> Task | None:
+        """Get a task by its ID (alias for find_by_id for view feature).
+
+        Args:
+            task_id: Unique task identifier
+
+        Returns:
+            Task object if found, None otherwise
+        """
+        return self.find_by_id(task_id)
+
+    def filter_tasks_by_status(self, completed: bool) -> list[Task]:
+        """Filter tasks by completion status.
+
+        Args:
+            completed: True to get completed tasks, False for pending tasks
+
+        Returns:
+            List of Task objects matching the completion status
+
+        Example:
+            >>> tasklist.filter_tasks_by_status(completed=True)
+            [Task(id=2, completed=True), Task(id=5, completed=True)]
+            >>> tasklist.filter_tasks_by_status(completed=False)
+            [Task(id=1, completed=False), Task(id=3, completed=False)]
+        """
+        return [task for task in self._tasks if task.completed == completed]
