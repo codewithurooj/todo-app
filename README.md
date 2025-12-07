@@ -81,8 +81,8 @@ This project follows **7 Core Principles** defined in our [Constitution](.specif
 #### Features (Phase I)
 - ✅ Constitution v1.0.0 established
 - ✅ Spec Generator Subagent (development tool)
-- ⏳ Add task
-- ⏳ Delete task
+- ✅ Add task (MVP complete with title and description)
+- ✅ Delete task (MVP complete with validation and confirmation)
 - ⏳ Update task
 - ⏳ View tasks
 - ⏳ Mark task complete
@@ -162,19 +162,109 @@ source .venv/bin/activate
 ### 3. Install Dependencies
 ```bash
 # Install development dependencies
-uv pip install -r requirements.txt  # Once created
+uv pip install -r requirements.txt
 ```
 
 ### 4. Verify Installation
 ```bash
-# Run tests (once implemented)
+# Run tests
 pytest
 
-# Check code quality (once implemented)
-ruff check .
-black --check .
-mypy .
+# Check code quality
+ruff check src/
+black --check src/
+mypy src/
 ```
+
+## 🎮 Quick Start
+
+### Running the Application
+
+```bash
+# Start the todo app
+python main.py
+```
+
+### Usage Example
+
+```
+==================================================
+     Todo App - In-Memory Task Manager
+==================================================
+
+Welcome! Manage your tasks with ease.
+Note: Tasks are stored in memory and will be
+lost when you exit the application (Phase I).
+
+==================================================
+           MAIN MENU
+==================================================
+  1. Add Task
+  2. View Tasks
+  3. Update Task
+  4. Delete Task
+  5. Mark Complete
+  0. Exit
+==================================================
+
+Enter your choice (0-5): 1
+
+==================================================
+           ADD NEW TASK
+==================================================
+
+Enter task title (or 'cancel' to abort): Buy groceries
+
+Enter description (optional, press Enter to skip):
+> Milk, eggs, bread, and vegetables
+
+--------------------------------------------------
+✓ Task #1 created successfully!
+  Title: Buy groceries
+  Description: Milk, eggs, bread, and vegetables
+  Created: 2025-12-07 14:30
+--------------------------------------------------
+```
+
+### Current Features
+
+#### ✅ Add Task (Feature 001)
+- Create tasks with title (required, max 200 characters)
+- Add optional description (max 1000 characters)
+- Automatic ID assignment and timestamps
+- Input validation with clear error messages
+- Cancel task creation at any time
+
+**Example**:
+```
+Enter task title: Prepare presentation
+Enter description: Create slides for quarterly review meeting
+
+✓ Task #2 created successfully!
+```
+
+#### ⏳ View Tasks (Feature 004) - Coming Soon
+#### ⏳ Update Task (Feature 003) - Coming Soon
+#### ✅ Delete Task (Feature 002)
+- Remove tasks by ID with confirmation prompt
+- ID validation (numeric, positive, exists)
+- Safe deletion with confirmation (y/n)
+- ID preservation (remaining tasks keep their IDs)
+- Clear error messages for invalid inputs
+- Cancel operation at any time
+
+**Example**:
+```
+Enter task ID to delete (or 'cancel' to abort): 2
+
+Delete task #2: 'Buy groceries'?
+Confirm (y/n): y
+
+--------------------------------------------------
+✓ Task #2 'Buy groceries' deleted successfully
+--------------------------------------------------
+```
+#### ⏳ Mark Complete (Feature 005) - Coming Soon
 
 ## 📁 Project Structure
 
